@@ -26,7 +26,7 @@ In this moment only we need the **nameLine**. Then, we need to replace value in 
 
 ![alt text](./n5.JPG)
 
-**nameLine** is Victoria and when you execute the request automatically replace **nameLine** to **Victoria**. The next step is to create the tests. We want to validate that the request return 200 code, is Victoria and underground line.
+**nameLine** is Victoria and when you execute the request automatically replace **nameLine** to **Victoria**. The next step is to create the tests. We want to validate that the request **return 200 code**, is **Victoria** and **underground line**.
 
 ![alt text](./n6.JPG)
 
@@ -48,7 +48,7 @@ Now we want to get id, use Javascript function to validate that the request retu
 
 ![alt text](./n9.JPG)
 
-And now we put the bikeID value that And now with the last request we validate **id** and **lat** and **lon**.
+And now we put the **bikeID** value that And now with the last request we validate **id** and **lat** and **lon**.
 
 ![alt text](./n10.JPG)
 
@@ -57,7 +57,7 @@ Now if we execute the tests you can see that all working.
 ![alt text](./n1.JPG)
 
 ## Step 2: CI/CD
-The objective is import the collection to Newman and execute with node command-line.
+The objective is import the collection to **Newman** and execute with node command-line.
 
 Newman is a command-line collection runner for Postman. You can execute newman directly with command-line or with Node. We explain with Node.
 
