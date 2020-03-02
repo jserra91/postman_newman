@@ -1,0 +1,14 @@
+{
+  "name": "postman-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "newman": "newman run ./src/api.tlf.gov.uk.postman_collection.json -e ./src/Victoria.postman_environment.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^4.6.0"
+  }
+}

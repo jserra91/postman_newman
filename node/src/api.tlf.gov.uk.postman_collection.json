@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "5666d7e8-530b-4597-a463-7b77cf90576d",
+		"name": "api.tlf.gov.uk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Underground",
+			"item": [
+				{
+					"name": "get information about Victoria line",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2de41b1d-4bb9-47a5-8296-8e9dcd047706",
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Is victoria\", function () {\r",
+									"    pm.expect(jsonData[0].id).to.equal(\"victoria\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Is a tube\", function () {\r",
+									"    pm.expect(jsonData[0].modeName).to.equal(\"tube\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.tfl.gov.uk/Line/{{nameLine}}/Status",
+							"protocol": "https",
+							"host": [
+								"api",
+								"tfl",
+								"gov",
+								"uk"
+							],
+							"path": [
+								"Line",
+								"{{nameLine}}",
+								"Status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get route of Victoria line",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2de41b1d-4bb9-47a5-8296-8e9dcd047706",
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Is victoria\", function () {\r",
+									"    pm.expect(jsonData.id).to.equal(\"victoria\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Origin Walthamstow Central Underground Station\", function () {\r",
+									"    pm.expect(jsonData.routeSections[0].originationName).to.equal(\"Walthamstow Central Underground Station\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Destination Brixton Underground Station\", function () {\r",
+									"    pm.expect(jsonData.routeSections[0].destinationName).to.equal(\"Brixton Underground Station\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.tfl.gov.uk/Line/{{nameLine}}/Route",
+							"protocol": "https",
+							"host": [
+								"api",
+								"tfl",
+								"gov",
+								"uk"
+							],
+							"path": [
+								"Line",
+								"{{nameLine}}",
+								"Route"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Bike statios",
+			"item": [
+				{
+					"name": "get stations arround Euston",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2de41b1d-4bb9-47a5-8296-8e9dcd047706",
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"8 results\", function () {\r",
+									"    pm.expect(Object.keys(jsonData).length).to.equal(8);\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"bikeID\", jsonData[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.tfl.gov.uk/BikePoint/Search?query={{bikeStation}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"tfl",
+								"gov",
+								"uk"
+							],
+							"path": [
+								"BikePoint",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "{{bikeStation}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get information about bike station",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2de41b1d-4bb9-47a5-8296-8e9dcd047706",
+								"exec": [
+									"pm.test(\"Status 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Is BikePoints_20\", function () {\r",
+									"    pm.expect(jsonData.id).to.equal(\"BikePoints_20\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Latitude and Longitude\", function () {\r",
+									"    pm.expect(jsonData.lat).to.equal(51.527326);\r",
+									"    pm.expect(jsonData.lon).to.equal(-0.136052);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.tfl.gov.uk/BikePoint/{{bikeID}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"tfl",
+								"gov",
+								"uk"
+							],
+							"path": [
+								"BikePoint",
+								"{{bikeID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
