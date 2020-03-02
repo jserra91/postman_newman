@@ -2,8 +2,8 @@
 A walkthrough for integrations test with postman and Newman.
 
 **Prerequisites:**
-•	Postman (last version)
-•	Node 10/12/13
+- Postman (last version)
+- Node 10/12/13
 
 ## Motivation
 For example, you have 5 different API projects in the same application.
